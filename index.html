@@ -3,38 +3,91 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Yaba Map</title>
+  <title>LAGIS 2026 — Yaba, Lagos</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
 
   <div id="sidebar">
-    <div id="logo">Yaba Map</div>
-    <input type="text" id="search" placeholder="Search businesses..." />
-    <div id="filters">
-      <button class="filter-btn active" data-cat="all">All</button>
-      <button class="filter-btn" data-cat="food">Food</button>
-      <button class="filter-btn" data-cat="bank">Bank</button>
-      <button class="filter-btn" data-cat="health">Health</button>
-      <button class="filter-btn" data-cat="market">Market</button>
-      <button class="filter-btn" data-cat="school">School</button>
+    <div id="sidebar-header">
+      <div id="logo">
+        <div id="logo-icon">L</div>
+        <div>
+          <div id="logo-title">LAGIS</div>
+          <div id="logo-sub">Yaba, Lagos</div>
+        </div>
+      </div>
     </div>
+
+    <div id="search-wrap">
+      <svg id="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="search" placeholder="Search businesses, places…" autocomplete="off" />
+      <button id="search-clear" class="hidden">✕</button>
+    </div>
+
+    <div id="categories">
+      <button class="cat-btn active" data-cat="all"><span class="cat-icon">🗺️</span><span>All</span></button>
+      <button class="cat-btn" data-cat="food"><span class="cat-icon">🍽️</span><span>Food</span></button>
+      <button class="cat-btn" data-cat="bank"><span class="cat-icon">🏦</span><span>Banks</span></button>
+      <button class="cat-btn" data-cat="health"><span class="cat-icon">🏥</span><span>Health</span></button>
+      <button class="cat-btn" data-cat="market"><span class="cat-icon">🛒</span><span>Markets</span></button>
+      <button class="cat-btn" data-cat="school"><span class="cat-icon">🎓</span><span>Schools</span></button>
+      <button class="cat-btn" data-cat="fuel"><span class="cat-icon">⛽</span><span>Fuel</span></button>
+      <button class="cat-btn" data-cat="transit"><span class="cat-icon">🚌</span><span>Transit</span></button>
+    </div>
+
+    <div id="list-header">
+      <span id="list-count">15 places</span>
+    </div>
+
     <div id="poi-list"></div>
   </div>
 
   <div id="map"></div>
 
   <div id="info-card" class="hidden">
-    <button id="close-card">✕</button>
-    <div id="card-category"></div>
-    <h2 id="card-name"></h2>
-    <p id="card-address"></p>
-    <p id="card-phone"></p>
-    <p id="card-hours"></p>
+    <div id="card-drag-bar"></div>
+    <div id="card-inner">
+      <div id="card-top">
+        <div>
+          <div id="card-category-badge"></div>
+          <h2 id="card-name"></h2>
+          <div id="card-address"></div>
+        </div>
+        <button id="close-card" aria-label="Close">✕</button>
+      </div>
+      <div id="card-details">
+        <div id="card-phone" class="detail-row hidden">
+          <span class="detail-icon">📞</span>
+          <span id="card-phone-text"></span>
+        </div>
+        <div id="card-hours-row" class="detail-row hidden">
+          <span class="detail-icon">🕐</span>
+          <span id="card-hours-text"></span>
+        </div>
+      </div>
+      <div id="card-actions">
+        <button class="action-btn primary" id="btn-directions">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M3 12l9-9 9 9"/><path d="M9 21V12h6v9"/></svg>
+          Directions
+        </button>
+        <button class="action-btn" id="btn-share">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          Share
+        </button>
+      </div>
+    </div>
   </div>
 
-  <script src="https://mapgl.2gis.com/api/js/v1"></script>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <div id="map-controls">
+    <button class="map-ctrl-btn" id="btn-zoom-in">+</button>
+    <div class="map-ctrl-divider"></div>
+    <button class="map-ctrl-btn" id="btn-zoom-out">−</button>
+  </div>
+
+  <div id="attribution">© OpenStreetMap · LAGIS 2026</div>
+
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="app.js"></script>
 </body>
