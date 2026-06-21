@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yaba Map</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="sidebar">
+    <div id="logo">Yaba Map</div>
+    <input type="text" id="search" placeholder="Search businesses..." />
+    <div id="filters">
+      <button class="filter-btn active" data-cat="all">All</button>
+      <button class="filter-btn" data-cat="food">Food</button>
+      <button class="filter-btn" data-cat="bank">Bank</button>
+      <button class="filter-btn" data-cat="health">Health</button>
+      <button class="filter-btn" data-cat="market">Market</button>
+      <button class="filter-btn" data-cat="school">School</button>
+    </div>
+    <div id="poi-list"></div>
+  </div>
+
+  <div id="map"></div>
+
+  <div id="info-card" class="hidden">
+    <button id="close-card">✕</button>
+    <div id="card-category"></div>
+    <h2 id="card-name"></h2>
+    <p id="card-address"></p>
+    <p id="card-phone"></p>
+    <p id="card-hours"></p>
+  </div>
+
+  <script src="https://mapgl.2gis.com/api/js/v1"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
